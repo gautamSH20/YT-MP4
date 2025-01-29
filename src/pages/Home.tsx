@@ -46,7 +46,7 @@ export const Home = () => {
   };
 
   return (
-    <div className="flex flex-col items-center md:h-[70vh] p-4 md:w-[60vh] h-full w-[20vh] rounded-md shadow-lg dark:bg-[#1e2939] dark:shadow-[#1e2949] shadow-gray-400 bg-white">
+    <div className="flex flex-col items-center md:h-[70vh] p-4 md:w-[60vh] h-full w-[50vh] rounded-md shadow-lg dark:bg-[#1e2939] dark:shadow-[#1e2949] shadow-gray-400 bg-white">
       <div className="flex items-center mb-10 dark:text-blue-600 text-black gap-5">
         <MainIcon />
         <div>IN-YT2MP4</div>
@@ -58,14 +58,14 @@ export const Home = () => {
       <div className=" gap-6 h-full flex flex-col justify-center w-[50vh] items-center ">
         <input
           placeholder="put your link "
-          className="  border-b-2 w-[50vh] dark:text-white text-black"
+          className="  border-b-2 w-[40vh] dark:text-white text-black"
           value={getValue}
           onChange={(e) => {
             setGetVlaue(e.target.value);
           }}
         ></input>
         <input
-          className=" border-b-2 w-[50vh] dark:text-white text-black"
+          className=" border-b-2 w-[40vh] dark:text-white text-black"
           placeholder="File name to dwonload as"
           value={fileName}
           onChange={(e) => {
