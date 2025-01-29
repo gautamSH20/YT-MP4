@@ -9,15 +9,15 @@ function App() {
   return (
     <div className={` ${val ? "dark " : ""}`}>
       <div
-        className={`min-h-screen max-h-full flex flex-col justify-center items-center p-4 dark:bg-black  bg-white`}
+        className={`min-h-screen max-h-screen flex flex-col justify-center items-center p-5 dark:bg-black  bg-white`}
       >
-        <section className="absolute top-0">
+        <section className="fixed top-0">
           <Nav onclick={() => setval((e) => !e)} />
         </section>
         <section className="mb-10 md:mb-0">
           <Home />
         </section>
-        <section className="absolute bottom-0 ">
+        <section className="fixed bottom-0">
           <Footer />
         </section>
       </div>
