@@ -46,7 +46,7 @@ export const Home = () => {
   };
 
   return (
-    <div className="flex flex-col items-center md:h-[70vh] p-4 md:w-[60vh] h-full w-[50vh] rounded-md shadow-lg dark:bg-[#1e2939] dark:shadow-[#1e2949] shadow-gray-400 bg-white">
+    <div className="flex flex-col items-center md:h-[70%] p-4 md:w-[60vh] h-[70%] w-[50vh] rounded-md shadow-lg dark:bg-[#1e2939] dark:shadow-[#1e2949] shadow-gray-400 bg-white">
       <div className="flex items-center mb-10 dark:text-blue-600 text-black gap-5">
         <MainIcon />
         <div>IN-YT2MP4</div>
