@@ -14,7 +14,9 @@ function App() {
         <section className="absolute top-0">
           <Nav onclick={() => setval((e) => !e)} />
         </section>
-        <Home />
+        <section className="mb-10 md:mb-0">
+          <Home />
+        </section>
         <section className="absolute bottom-0 ">
           <Footer />
         </section>
