@@ -1,37 +1,41 @@
-import { useEffect, useState } from "react";
-import { fetch } from "../services/ApiResponse";
+import { useState } from "react";
+import axios from "axios";
+import { BACKEND_URL } from "../utils/url";
 
 export const Home = () => {
   const [getValue, setGetVlaue] = useState("");
-  const [id, setId] = useState("");
-  const [response, setResponse] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [err, seterr] = useState("");
+  const handel = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    seterr("");
 
-  useEffect(() => {
-    if (id) {
-      const fetchData = () => {
-        let interval = setInterval(async function () {
-          const res = await fetch(id);
-          if (res.status === 200 && res.data.status === "ok") {
-            setResponse(res.data);
-          } else if (res.status === 200 && res.data.status === "flai") {
-            alert("invalid video-id");
-            clearInterval(interval);
-          } else {
-            clearInterval(interval);
-            return console.log("error");
-          }
-        }, 1000);
-      };
-      fetchData();
-    }
-  }, [id]);
+    try {
+      const response = await axios.post(
+        `${BACKEND_URL}/api/v1/download`,
+        {
+          url: getValue,
+        },
+        {
+          responseType: "blob",
+        }
+      );
+      const blob = new Blob([response.data], { type: "audio/mpeg" });
+      const downloadUrl = window.URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = downloadUrl;
+      link.setAttribute("download", "download.mp3");
+      document.body.appendChild(link);
 
-  useEffect(() => {
-    if (response) {
-      //@ts-ignore
-      window.location.href = response.link;
+      link.click();
+      link.remove();
+    } catch (e) {
+      seterr("error has been found");
+    } finally {
+      setLoading(false);
     }
-  }, [response]);
+  };
 
   return (
     <div className="flex flex-col items-center   h-[70vh] p-4 w-[60vh] rounded-md shadow-lg dark:bg-[#1e2939] dark:shadow-[#1e2949] shadow-gray-400 bg-white">
@@ -53,16 +57,11 @@ export const Home = () => {
         ></input>
 
         <button
-          onClick={() => {
-            const text: string = getValue.split("=")[1];
-            if (text) {
-              setId(text);
-            }
-          }}
+          disabled={loading}
+          onClick={handel}
           className="bg-blue-400 p-1 rounded-md w-[20vh]  hover:w-[30vh] hover:shadow-lg shadow-black ease-in duration-300 hover:text-lg"
         >
-          {" "}
-          download
+          {loading ? "Converting...." : "Convert"}
         </button>
       </div>
     </div>
